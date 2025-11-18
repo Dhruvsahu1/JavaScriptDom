@@ -11,8 +11,10 @@ btn.addEventListener("click",function () {
     div.style.backgroundColor = `rgb(${s1},${s2},${s3})`;
     let x = Math.floor(Math.random()*100);
     let y = Math.floor(Math.random()*100);
+    let deg = Math.floor(Math.random()*360);
     div.style.position= "absolute";
     div.style.top = `${x}%`
     div.style.left = `${y}%`
+    div.style.transform = `rotate(${deg}deg)`;
     me.appendChild(div);
 })
