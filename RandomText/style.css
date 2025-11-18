@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica, sans-serif;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+body{
+    background-color: black;
+    overflow: hidden;
+}
+button {
+  background-color: rgba(146, 40, 40, 0.5);
+
+  border: 1px solid rgba(146, 40, 40, 1);
+
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: x-large;
+  z-index: 10;
+  cursor: pointer;
+
+  backdrop-filter: blur(4px);
+  position: fixed;
+}
+button:active{
+    transform: scale(0.95);
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 90%;
+  width: 90%;
+}
