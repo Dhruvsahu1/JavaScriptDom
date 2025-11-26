@@ -1,0 +1,135 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+main{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card{
+  height: 73vh;
+  width: 20vw;                 
+  background-color: white;
+  padding: 20px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.card div{
+  position: relative;
+}
+
+
+.card img{
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+.card h2{
+  font-size: 20px;
+  text-align: center;
+}
+
+.card i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 80px;
+
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sJtHAr6JckVrxU4MgwRmYih0eVkb-Z8DxRR0Mi-M3NR0Zo-Ike45ir12yyJORqCMn8A&usqp=CAU");
+  background-size: cover;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0) rotate(-80deg);
+  transition: all cubic-bezier(.65,1,.77,1.44) 0.35s;
+}
+
+
+@media (max-width: 1400px) {
+  .card {
+    width: 25vw;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: 40vw;
+    height: 70vh;
+  }
+  .card img {
+    height: 55vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 60vw;
+    height: 65vh;
+    padding: 15px;
+  }
+  .card img {
+    height: 50vh;
+  }
+  .card h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 85vw;
+    height: 65vh;
+    padding: 12px;
+  }
+  .card img {
+    height: 45vh;
+    border-radius: 15px;
+  }
+  .card h2 {
+    font-size: 16px;
+  }
+  .card i {
+    font-size: 60px;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .card {
+    width: 90vw;
+    height: 62vh;
+  }
+  .card img {
+    height: 40vh;
+  }
+  .card h2 {
+    font-size: 15px;
+  }
+}
