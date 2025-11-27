@@ -1,44 +1,95 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: helvetica neue, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: helvetica neue, sans-serif;
 }
 
 html,
 body {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
-.nav{
+
+/* --- Navigation Styles --- */
+.nav {
     width: 100%;
     height: auto;
-    position: absolute;
-    top: -10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     margin-top: 10px;
     background-color: #FCFDFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 10px 20px;
     box-shadow: 0px 3px 6px rgb(188, 184, 184);
 }
-.text{
+.nav h1 {
+    font-size: 20px;
+    padding: 0;
+    color: rgb(67, 104, 184);
+}
+.nav img {
+    height: 40px;
+    color: rgb(67, 104, 184);
+}
+.nav .links a {
+    text-decoration: none;
+    color: rgb(50, 55, 159);
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+.nav .links a:hover {
+    color: rgb(67, 104, 184);
+}
+
+/* --- Main Content and Board Styles --- */
+main {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff6ff;
+    padding: 20px 0;
+    margin-bottom: 40px; /* Space for the fixed footer */
+}
+.board {
+    height: 75vh;
+    width: 90vw;
+    background-color: #FCFDFF;
+    border-radius: 10px;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+    padding: 20px; 
+}
+
+
+/* --- Text Block Styles --- */
+.text {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     position: absolute;
-    top: 20%;
-    gap: 50vw;
+    top: 20px; 
+    width: calc(100% - 40px); 
+    left: 20px;
+    right: 20px;
+    margin: 0 auto;
+    z-index: 1;
 }
-.text h1{
+.text h1 {
     font-size: 40px;
     color: rgb(50, 55, 159);
-    padding: 20px;
+    padding: 20px 0;
 }
-.text .buttonPress{
+.text .buttonPress {
     height: 7vh;
-    width: 8vw;
+    width: 150px;
     border-radius: 4px;
     background-color: rgb(202, 208, 221);
     text-align: center;
@@ -46,100 +97,208 @@ body {
     align-items: center;
     color: rgb(86, 77, 77);
     justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
-.nav .links a{
-    text-decoration: none;
-    color: rgb(50, 55, 159);
-    margin: 0 10px;
-}
-.nav h1{
-    font-size: 20px;
-    padding: 20px;
-    color: rgb(67, 104, 184);
-}
-.nav img{
-    height: 40px;
-    color: rgb(67, 104, 184);
-}
-main {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #eff6ff;
-}
-footer{
+
+
+/* --- Button Section Styles --- */
+.btn {
+    display: flex;
+    /* Use flex-start and align-items: flex-end for piano layout */
+    justify-content: flex-start; 
+    align-items: flex-end; 
     position: absolute;
-    bottom: 5%;
-    left: 40%;
+    bottom: 20px; 
+    width: calc(100% - 40px); 
+    left: 20px;
+    gap: 0; 
+    z-index: 1; 
+}
+
+/* White Keys */
+.vertical-btn {
+    /* Total of 21 white keys, so each takes 1/21 of the container width */
+    width: calc(100% / 21); 
+    height: 25vh;
+    max-width: none; 
+    min-width: 0;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    border-right: none; 
+    background-color: #FCFDFF;
+    box-shadow: 0px 3px 0px rgb(188, 184, 184);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5px;
+    cursor: pointer;
+    position: relative; /* IMPORTANT: So z-index works on black keys */
+    font-family: sans-serif;
+    transition: all 0.1s ease;
+    text-align: center;
+    word-break: break-word; 
+    margin-right: -1px; 
+    z-index: 1; /* White keys are below black keys */
+}
+
+/* Round the corners of the first and last white keys */
+.vertical-btn:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.vertical-btn:last-child {
+    border-right: 1px solid #ccc;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 0;
+}
+
+.vertical-btn:active {
+    box-shadow: none;
+    transform: translateY(2px);
+}
+.top-text, .bottom-text {
+    font-size: 16px;
+    color: #555;
+    max-width: 100%; 
+}
+
+/* Black Keys */
+.vertical-small-btn {
+    /* FIX: Smaller size for black keys */
+    height: 15vh; /* Retain height */
+    width: calc( (100% / 21) * 0.6 ); /* Black key is 60% width of a white key */
+    max-width: 35px; /* Maximum width of black key */
+    min-width: 20px; /* Minimum width for very small screens */
+    
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #000000;
+    box-shadow: 0px 3px 0px rgb(188, 184, 184);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    cursor: pointer;
+    position: absolute; /* Positioned relative to .btn container */
+    top: 0; /* Positioned at the top of the .btn container */
+    z-index: 2; /* Black keys are above white keys */
+    font-family: sans-serif;
+    transition: all 0.1s ease;
+    text-align: center;
+    word-break: break-word;
+    /* Common for all black keys */
+    transform: translateX(-50%); /* Pull back by half its own width for centering */
+}
+
+.vertical-small-btn:active {
+    box-shadow: none;
+    transform: translateY(2px) translateX(-50%); 
+}
+.top-text-sm, .bottom-text-sm {
+    font-size: 16px;
+    color: #d9d7d7;
+}
+
+/* --- CRITICAL BLACK KEY POSITIONING --- */
+/* Each 'left' value is based on the START of the white key it's associated with, plus half the width of a white key. */
+/* Total white keys = 21. Width of one white key = 100% / 21. */
+
+/* C# (index 0 + 1/2 key) */
+.sm-btn-1 { left: calc( (100% / 21) * 1 - 0.5px ); } /* 1st white key + 1/2 of 1st key */
+/* D# (index 1 + 1/2 key) */
+.sm-btn-2 { left: calc( (100% / 21) * 2 - 0.5px ); } /* 2nd white key + 1/2 of 2nd key */
+/* F# (index 3 + 1/2 key) */
+.sm-btn-3 { left: calc( (100% / 21) * 4 - 0.5px ); } /* 4th white key + 1/2 of 4th key */
+/* G# (index 4 + 1/2 key) */
+.sm-btn-4 { left: calc( (100% / 21) * 5 - 0.5px ); } /* 5th white key + 1/2 of 5th key */
+/* A# (index 5 + 1/2 key) */
+.sm-btn-5 { left: calc( (100% / 21) * 6 - 0.5px ); } /* 6th white key + 1/2 of 6th key */
+
+/* Next Octave */
+.sm-btn-6 { left: calc( (100% / 21) * 8 - 0.5px ); }
+.sm-btn-7 { left: calc( (100% / 21) * 9 - 0.5px ); }
+.sm-btn-8 { left: calc( (100% / 21) * 11 - 0.5px ); }
+.sm-btn-9 { left: calc( (100% / 21) * 12 - 0.5px ); }
+.sm-btn-10 { left: calc( (100% / 21) * 13 - 0.5px ); }
+
+/* Next Octave */
+.sm-btn-11 { left: calc( (100% / 21) * 15 - 0.5px ); }
+.sm-btn-12 { left: calc( (100% / 21) * 16 - 0.5px ); }
+.sm-btn-13 { left: calc( (100% / 21) * 18 - 0.5px ); }
+.sm-btn-14 { left: calc( (100% / 21) * 19 - 0.5px ); }
+.sm-btn-15 { left: calc( (100% / 21) * 20 - 0.5px ); }
+/* --- END BLACK KEY POSITIONING --- */
+
+
+/* --- Footer Styles --- */
+footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: none;
     text-align: center;
     padding: 10px 0;
     background-color: #eff6ff;
     color: rgb(67, 104, 184);
     font-size: 14px;
-}
-.board {
-  height: 75vh;
-  width: 90vw;
-  background-color: #FCFDFF;
-  border-radius: 10px;
-}
-.btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    bottom: -300px;
-}
-.vertical-btn:active {
-    box-shadow: none;
-    transform: translateY(2px); 
+    z-index: 90; 
 }
 
-.vertical-btn {
-  height: 25vh;
-  width: 4vw;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #FCFDFF;
-  box-shadow: 0px 3px 0px rgb(188, 184, 184);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-  cursor: pointer;
-  position: relative;
-  font-family: sans-serif;
+
+/* ======================================= */
+/* ====== MEDIA QUERIES FOR RESPONSIVENESS ====== */
+/* ======================================= */
+
+@media (max-width: 768px) {
+
+    .nav { flex-direction: column; padding: 10px 0; }
+    .nav .links { padding: 10px 0; text-align: center; }
+    .nav .links a { margin: 0 5px; font-size: 14px; }
+
+    .text {
+        position: relative; top: auto; flex-direction: column;
+        width: 100%; padding: 0 10px; align-items: flex-start;
+    }
+    .text h1 { font-size: 30px; padding: 10px 0; }
+    .text .buttonPress { width: 100%; height: 6vh; margin-top: 10px; }
+    
+    main { margin-bottom: 40px; }
+    .board { min-height: 75vh; padding: 10px; }
+
+    .btn {
+        bottom: 10px;
+        width: calc(100% - 20px); 
+        left: 10px;
+    }
+    
+    /* White Keys */
+    .vertical-btn {
+        height: 15vh;
+        font-size: 10px;
+    }
+    
+    /* Black Keys */
+    .vertical-small-btn {
+        height: 10vh;
+        /* Re-adjust width based on smaller screen sizes */
+        width: calc( (100% / 21) * 0.7 ); /* Slightly larger black keys on mobile */
+        max-width: 30px; /* Cap width */
+        min-width: 15px; /* Min width */
+    }
+    .top-text, .bottom-text, .top-text-sm, .bottom-text-sm {
+        font-size: 10px;
+    }
 }
-.top-text, .bottom-text {
-  font-size: 16px;
-  color: #555;
-}
-.vertical-small-btn{
-    height: 15vh;
-  width: 2vw;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #000000;
-  box-shadow: 0px 3px 0px rgb(188, 184, 184);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  z-index: 10;
-  font-family: sans-serif;
-}
-.vertical-small-btn:active {
-    box-shadow: none;
-    transform: translateY(2px); 
-}
-.top-text-sm, .bottom-text-sm {
-  font-size: 16px;
-  color: #d9d7d7;
+
+@media (max-width: 480px) {
+    .text h1 { font-size: 24px; }
+    
+    .vertical-btn { height: 12vh; font-size: 9px; }
+    .vertical-small-btn { height: 8vh; }
+    .top-text, .bottom-text, .top-text-sm, .bottom-text-sm { font-size: 9px; }
 }
