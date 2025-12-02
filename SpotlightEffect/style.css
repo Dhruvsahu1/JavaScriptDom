@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Special+Elite&family=UnifrakturMaguntia&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica neue, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+:root {
+  --x: -1000px;
+  --y: -1000px;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  
+ 
+  background-image: url("./Car.jpg");
+  
+  background-size: 100% 100%; 
+  background-position: center;
+  position: relative;
+  z-index: 1;
+    cursor: none;
+}
+
+.text {
+  position: absolute;
+  
+  top: 20%;        
+  left: 28%;
+  transform: translate(-50%, -50%);
+  
+  font-size: clamp(2rem, 12vw, 4rem);
+  
+  font-family: 'Special Elite', cursive; 
+  font-weight: 500;
+  color: #6E838E;    
+  
+  -webkit-text-stroke: 1px #000000; 
+
+  filter: drop-shadow(0px 0px 15px rgba(0,0,0, 0.8));
+  z-index: 3;
+  
+  pointer-events: auto; 
+  user-select: none; 
+}
+
+@media (min-width: 768px) {
+  .text {
+    -webkit-text-stroke: 3px #000000; 
+    font-size: clamp(5rem, 15vw, 10rem);
+  }
+}
+
+.spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  
+  
+  background: radial-gradient(
+      circle at var(--x) var(--y), 
+      transparent 0%, 
+      transparent 3vmax, 
+      rgba(0,0,0,0.85) 20vmax 
+  );
+  
+  z-index: 4;
+  pointer-events: none; 
+}
