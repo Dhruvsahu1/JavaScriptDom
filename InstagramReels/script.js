@@ -196,9 +196,10 @@ const feedPosts = [
 ];
 
 const reels = document.querySelector(".all-Reels");
-console.log(reels);
 
-feedPosts.forEach((elem)=>{
+
+function addData(){
+feedPosts.forEach((elem,idx)=>{
     
     reels.innerHTML  += `<div class="reel">
            <video autoplay loop muted src="${elem.videoContent}"></video>
@@ -214,8 +215,8 @@ feedPosts.forEach((elem)=>{
               <h3>${elem.caption}</h3>
             </div>
             <div class="right">
-                <div class="like">
-                    <h4 class="like-icon icons">${elem.userActions.isLiked?'<i class="ri-heart-line">':'<i class="ri-heart-fill">'}</i></h4>
+                <div id=${idx} class="like">
+                    <h4 class="like-icon icons">${elem.userActions.isLiked?'<i class="ri-heart-fill red">':'<i class="ri-heart-line">'}</i></h4>
                     <h6>${elem.stats.likeCount}</h6>
                 </div>
                 <div class="comment">
@@ -234,3 +235,18 @@ feedPosts.forEach((elem)=>{
           </div>`
     
 }) 
+
+}
+addData();
+reels.addEventListener("click",function(dets){
+  console.log(feedPosts[dets.target.id]);
+  
+  if(!feedPosts[dets.target.id].userActions.isLiked){
+    feedPosts[dets.target.id].stats.likeCount++;
+    feedPosts[dets.target.id].userActions.isLiked = true;
+  }else{
+    feedPosts[dets.target.id].stats.likeCount--;
+    feedPosts[dets.target.id].userActions.isLiked = false;
+  }
+  addData();
+})
