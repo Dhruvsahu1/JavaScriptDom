@@ -96,6 +96,7 @@ section{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     gap: 15px;
     position: absolute;
     bottom: 10%;
@@ -104,6 +105,10 @@ section{
 }
 .right h4{
     cursor: pointer;
+}
+.right .like{
+   cursor: pointer;
+   display: block;
 }
 .right i{
     font-size: 25px;
@@ -123,4 +128,16 @@ section{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* width: 50px; */
+    cursor: pointer;
+}
+.right>div h4{
+    pointer-events: none;
+}
+.right>div h6{
+    pointer-events: none;
+}
+.like-icon i.red {
+  color: red !important;
+  background: transparent !important;
 }

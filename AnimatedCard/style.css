@@ -1,0 +1,40 @@
+/* Read Discreate Properties  */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica neue, sans-serif;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+/* We cam create custom Properties like Color Angle and Length for examples */
+@property --bgColor{
+    syntax: "<color>";
+    initial-value: rgb(189, 7, 143);
+    inherits: false;
+}
+@keyframes animateBGColor{
+    from{
+        --bgColor:red;
+    }
+    to{
+        --bgColor:rgb(0, 32, 128);
+    }
+}
+body{
+    background-color: black;
+   display: flex;
+   justify-content: center;
+    align-items: center;
+}
+
+.box{
+    height: 400px;
+    width: 800px;
+    border: 1px solid white;
+    background-color: var(--bgColor);
+    animation: animateBGColor 10s infinite;
+}
